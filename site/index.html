@@ -575,16 +575,15 @@
       background-color: #dc2626;
     }
 
-    /* 購入ボタン */
-    .purchase-links-cell {
+    /* 購入リンク */
+    .purchase-links-cell .purchase-links-inner {
       display: flex;
       flex-direction: column;
       gap: 0.3rem;
-      min-width: 80px;
     }
 
     .purchase-btn {
-      display: inline;
+      display: block;
       color: #58a6ff;
       text-decoration: none;
       font-size: 0.8rem;
@@ -715,14 +714,10 @@
 
       /* 購入リンクは横並び */
       td.purchase-links-cell {
-        grid-template-columns: 100px 1fr !important;
+        grid-template-columns: 120px 1fr !important;
       }
 
-      td.purchase-links-cell:before {
-        content: "購入";
-      }
-
-      .purchase-links-cell {
+      .purchase-links-inner {
         flex-direction: row;
         gap: 0.6rem;
         align-items: center;
@@ -879,6 +874,19 @@
       <!-- テーブル -->
       <div class="table-wrapper">
         <table id="keyboardTable">
+          <colgroup>
+            <col style="width: 22%"><!-- モデル名 -->
+            <col style="width: 9%"><!-- レイアウト -->
+            <col style="width: 8%"><!-- プロファイル -->
+            <col style="width: 9%"><!-- スイッチ技術 -->
+            <col style="width: 14%"><!-- スイッチフィール -->
+            <col style="width: 5%"><!-- ホットスワップ -->
+            <col style="width: 6%"><!-- バックライト -->
+            <col style="width: 8%"><!-- 接続 -->
+            <col style="width: 4%"><!-- 技適 -->
+            <col style="width: 7%"><!-- 入手性 -->
+            <col style="width: 8%"><!-- 購入 -->
+          </colgroup>
           <thead>
             <tr>
               <th>モデル名 <button class="sort-button" data-column="name">▲▼</button></th>
@@ -1389,7 +1397,7 @@
           <td data-label="接続">${connectivityHtml}</td>
           <td data-label="技適"><span class="cert-icon">${gitekiInfo}</span></td>
           <td data-label="入手性"><span class="badge badge-availability ${availabilityClass}">${availabilityLabel}</span></td>
-          <td class="purchase-links-cell" data-label="購入">${purchaseLinksHtml}</td>
+          <td class="purchase-links-cell" data-label="購入"><div class="purchase-links-inner">${purchaseLinksHtml}</div></td>
         </tr>
       `;
     }

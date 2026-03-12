@@ -1,0 +1,121 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "US Keyboard Inventory Schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["id", "name", "brand", "specs"],
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "ユニークな識別子 (例: keychron-k3-pro-us)"
+      },
+      "name": {
+        "type": "string",
+        "description": "製品名"
+      },
+      "brand": {
+        "type": "string",
+        "description": "ブランド名（タイポ防止のため選択制）",
+        "enum": ["Keychron", "HHKB", "NuPhy", "Realforce", "Wooting", "Logitech", "Razer", "SteelSeries", "DrunkDeer", "Varmilo", "FILCO"]
+      },
+      "specs": {
+        "type": "object",
+        "properties": {
+          "layout_size": {
+            "type": "string",
+            "enum": ["40%", "60%", "65%", "75%", "80% (TKL)", "100% (Full)", "Split"]
+          },
+          "profile": {
+            "type": "string",
+            "enum": ["Normal", "Low-Profile"]
+          },
+          "switch_technology": {
+            "type": "string",
+            "enum": ["Mechanical", "Topre (Capacitive)", "Hall Effect (Magnetic)", "Optical"],
+            "description": "スイッチの物理的な仕組み"
+          },
+          "switch_feels_available": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["Linear", "Tactile", "Clicky"]
+            },
+            "description": "購入時に選択できる打鍵感の選択肢"
+          },
+          "switch_hotswap": {
+            "type": "boolean",
+            "description": "スイッチをはんだ付けなしで交換できるか（ホットスワップ対応）"
+          },
+          "backlight": {
+            "type": "string",
+            "enum": ["None", "Single Color", "RGB"],
+            "description": "バックライトの種類"
+          },
+          "connectivity": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["USB-A", "USB-C", "Mini USB", "Bluetooth", "2.4GHz Dongle"]
+            },
+            "description": "対応している接続方式（複数選択可）"
+          },
+          "os_compatibility": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["Windows", "macOS", "iOS/iPadOS", "Android"]
+            },
+            "description": "メーカー公式サポートOS"
+          },
+          "customization_method": {
+            "type": "string",
+            "enum": ["QMK/VIA", "Vial", "ZMK", "DIP Switch", "Software", "Proprietary", "None"],
+            "description": "キーリマップ等のカスタマイズ手段"
+          },
+          "weight_g": {
+            "type": ["integer", "null"],
+            "minimum": 200,
+            "description": "本体重量（グラム）。モバイル用途の参考に。不明な場合はnull"
+          },
+          "release_date": {
+            "type": ["string", "null"],
+            "pattern": "^\\d{4}-\\d{2}$",
+            "description": "発売年月 (YYYY-MM)。不明な場合はnull"
+          }
+        }
+      },
+      "japan_context": {
+        "type": "object",
+        "properties": {
+          "availability": {
+            "type": "string",
+            "enum": ["Available", "Import Only", "Unavailable"],
+            "description": "日本での入手状況"
+          },
+          "giteki": {
+            "type": "string",
+            "enum": ["Certified", "Wired Only", "No/Unknown"],
+            "description": "技適認証の状態"
+          },
+          "purchase_urls": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uri"
+            },
+            "description": "日本での購入先URL（Amazon, 楽天, 遊舎工房など）"
+          }
+        }
+      },
+      "tags": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": ["gaming", "portable", "silent", "wireless", "split", "budget", "aluminum", "gasket-mount"]
+        },
+        "description": "フィルター用タグ"
+      }
+    }
+  }
+}

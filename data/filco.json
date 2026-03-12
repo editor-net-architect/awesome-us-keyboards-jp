@@ -1,0 +1,294 @@
+[
+  {
+    "id": "filco-majestouch-3-fullsize-us",
+    "name": "Majestouch 3 Full Size (US ASCII)",
+    "brand": "FILCO",
+    "specs": {
+      "layout_size": "100% (Full)",
+      "profile": "Normal",
+      "switch_technology": "Mechanical",
+      "switch_feels_available": ["Linear", "Tactile", "Clicky"],
+      "switch_hotswap": false,
+      "backlight": "None",
+      "connectivity": ["USB-C"],
+      "os_compatibility": ["Windows", "macOS"],
+      "customization_method": "None",
+      "weight_g": 1200,
+      "release_date": "2022-08"
+    },
+    "japan_context": {
+      "availability": "Available",
+      "giteki": "Wired Only",
+      "purchase_urls": [
+        "https://www.diatec.co.jp/en/det.php?prod_c=6151",
+        "https://www.amazon.co.jp/dp/B0BBV4625G"
+      ]
+    },
+    "tags": []
+  },
+  {
+    "id": "filco-majestouch-3-tkl-us",
+    "name": "Majestouch 3 Tenkeyless (US ASCII)",
+    "brand": "FILCO",
+    "specs": {
+      "layout_size": "80% (TKL)",
+      "profile": "Normal",
+      "switch_technology": "Mechanical",
+      "switch_feels_available": ["Linear", "Tactile", "Clicky"],
+      "switch_hotswap": false,
+      "backlight": "None",
+      "connectivity": ["USB-C"],
+      "os_compatibility": ["Windows", "macOS"],
+      "customization_method": "None",
+      "weight_g": null,
+      "release_date": "2022-08"
+    },
+    "japan_context": {
+      "availability": "Available",
+      "giteki": "Wired Only",
+      "purchase_urls": [
+        "https://www.diatec.co.jp/en/list.php?s[]=110:1006:10323",
+        "https://www.amazon.co.jp/dp/B0BBV5P3YF"
+      ]
+    },
+    "tags": []
+  },
+  {
+    "id": "filco-majestouch-3-ninja-fullsize-us",
+    "name": "Majestouch 3 NINJA Full Size (US ASCII)",
+    "brand": "FILCO",
+    "specs": {
+      "layout_size": "100% (Full)",
+      "profile": "Normal",
+      "switch_technology": "Mechanical",
+      "switch_feels_available": ["Linear", "Tactile", "Clicky"],
+      "switch_hotswap": false,
+      "backlight": "None",
+      "connectivity": ["USB-C"],
+      "os_compatibility": ["Windows", "macOS"],
+      "customization_method": "None",
+      "weight_g": 1200,
+      "release_date": "2022-08"
+    },
+    "japan_context": {
+      "availability": "Available",
+      "giteki": "Wired Only",
+      "purchase_urls": [
+        "https://www.diatec.co.jp/en/list.php?s[]=110:1006:10338"
+      ]
+    },
+    "tags": []
+  },
+  {
+    "id": "filco-majestouch-3-ninja-tkl-us",
+    "name": "Majestouch 3 NINJA Tenkeyless (US ASCII)",
+    "brand": "FILCO",
+    "specs": {
+      "layout_size": "80% (TKL)",
+      "profile": "Normal",
+      "switch_technology": "Mechanical",
+      "switch_feels_available": ["Linear", "Tactile", "Clicky"],
+      "switch_hotswap": false,
+      "backlight": "None",
+      "connectivity": ["USB-C"],
+      "os_compatibility": ["Windows", "macOS"],
+      "customization_method": "None",
+      "weight_g": null,
+      "release_date": "2022-08"
+    },
+    "japan_context": {
+      "availability": "Available",
+      "giteki": "Wired Only",
+      "purchase_urls": [
+        "https://www.diatec.co.jp/en/list.php?s[]=110:1006:10338"
+      ]
+    },
+    "tags": []
+  },
+  {
+    "id": "filco-majestouch-convertible-3-fullsize-us",
+    "name": "Majestouch Convertible 3 Full Size (US ASCII)",
+    "brand": "FILCO",
+    "specs": {
+      "layout_size": "100% (Full)",
+      "profile": "Normal",
+      "switch_technology": "Mechanical",
+      "switch_feels_available": ["Linear", "Tactile", "Clicky"],
+      "switch_hotswap": false,
+      "backlight": "None",
+      "connectivity": ["USB-C", "Bluetooth"],
+      "os_compatibility": ["Windows", "macOS", "iOS/iPadOS", "Android"],
+      "customization_method": "DIP Switch",
+      "weight_g": null,
+      "release_date": "2022-10"
+    },
+    "japan_context": {
+      "availability": "Available",
+      "giteki": "Certified",
+      "purchase_urls": [
+        "https://www.diatec.co.jp/en/list.php?s[]=110:1006:10348",
+        "https://www.amazon.co.jp/dp/B0BSVR9RV9"
+      ]
+    },
+    "tags": ["wireless"]
+  },
+  {
+    "id": "filco-majestouch-convertible-3-tkl-us",
+    "name": "Majestouch Convertible 3 Tenkeyless (US ASCII)",
+    "brand": "FILCO",
+    "specs": {
+      "layout_size": "80% (TKL)",
+      "profile": "Normal",
+      "switch_technology": "Mechanical",
+      "switch_feels_available": ["Linear", "Tactile", "Clicky"],
+      "switch_hotswap": false,
+      "backlight": "None",
+      "connectivity": ["USB-C", "Bluetooth"],
+      "os_compatibility": ["Windows", "macOS", "iOS/iPadOS", "Android"],
+      "customization_method": "DIP Switch",
+      "weight_g": 1000,
+      "release_date": "2022-10"
+    },
+    "japan_context": {
+      "availability": "Available",
+      "giteki": "Certified",
+      "purchase_urls": [
+        "https://www.diatec.co.jp/en/list.php?s[]=110:1006:10348",
+        "https://www.amazon.co.jp/dp/B0BSVPJHLJ"
+      ]
+    },
+    "tags": ["wireless"]
+  },
+  {
+    "id": "filco-majestouch-minila-r-convertible-us",
+    "name": "Majestouch MINILA-R Convertible (US ASCII)",
+    "brand": "FILCO",
+    "specs": {
+      "layout_size": "60%",
+      "profile": "Normal",
+      "switch_technology": "Mechanical",
+      "switch_feels_available": ["Linear", "Tactile", "Clicky"],
+      "switch_hotswap": false,
+      "backlight": "None",
+      "connectivity": ["Mini USB", "Bluetooth"],
+      "os_compatibility": ["Windows", "macOS", "iOS/iPadOS", "Android"],
+      "customization_method": "DIP Switch",
+      "weight_g": null,
+      "release_date": "2020-12"
+    },
+    "japan_context": {
+      "availability": "Available",
+      "giteki": "Certified",
+      "purchase_urls": [
+        "https://www.diatec.co.jp/en/list.php?s[]=110:1006:10281"
+      ]
+    },
+    "tags": ["wireless", "portable"]
+  },
+  {
+    "id": "filco-majestouch-stingray-fullsize-us",
+    "name": "Majestouch Stingray Full Size (US ASCII)",
+    "brand": "FILCO",
+    "specs": {
+      "layout_size": "100% (Full)",
+      "profile": "Low-Profile",
+      "switch_technology": "Mechanical",
+      "switch_feels_available": ["Linear"],
+      "switch_hotswap": false,
+      "backlight": "None",
+      "connectivity": ["USB-C"],
+      "os_compatibility": ["Windows", "macOS"],
+      "customization_method": "None",
+      "weight_g": 1100,
+      "release_date": "2019-03"
+    },
+    "japan_context": {
+      "availability": "Available",
+      "giteki": "Wired Only",
+      "purchase_urls": [
+        "https://www.diatec.co.jp/en/list.php?s[]=110:1006:10245"
+      ]
+    },
+    "tags": []
+  },
+  {
+    "id": "filco-majestouch-stingray-tkl-us",
+    "name": "Majestouch Stingray Tenkeyless (US ASCII)",
+    "brand": "FILCO",
+    "specs": {
+      "layout_size": "80% (TKL)",
+      "profile": "Low-Profile",
+      "switch_technology": "Mechanical",
+      "switch_feels_available": ["Linear"],
+      "switch_hotswap": false,
+      "backlight": "None",
+      "connectivity": ["USB-C"],
+      "os_compatibility": ["Windows", "macOS"],
+      "customization_method": "None",
+      "weight_g": 953,
+      "release_date": "2019-03"
+    },
+    "japan_context": {
+      "availability": "Available",
+      "giteki": "Wired Only",
+      "purchase_urls": [
+        "https://www.diatec.co.jp/en/list.php?s[]=110:1006:10245"
+      ]
+    },
+    "tags": []
+  },
+  {
+    "id": "filco-majestouch-xacro-m3a-us",
+    "name": "Majestouch Xacro M3A (US ASCII)",
+    "brand": "FILCO",
+    "specs": {
+      "layout_size": "65%",
+      "profile": "Normal",
+      "switch_technology": "Mechanical",
+      "switch_feels_available": ["Linear", "Tactile", "Clicky"],
+      "switch_hotswap": false,
+      "backlight": "None",
+      "connectivity": ["USB-C"],
+      "os_compatibility": ["Windows", "macOS"],
+      "customization_method": "Software",
+      "weight_g": 740,
+      "release_date": "2022-06"
+    },
+    "japan_context": {
+      "availability": "Available",
+      "giteki": "Wired Only",
+      "purchase_urls": [
+        "https://www.diatec.co.jp/en/xacro/",
+        "https://www.amazon.co.jp/dp/B0BJYL8MBD"
+      ]
+    },
+    "tags": ["portable"]
+  },
+  {
+    "id": "filco-majestouch-xacro-m10sp-us",
+    "name": "Majestouch Xacro M10SP (US ASCII)",
+    "brand": "FILCO",
+    "specs": {
+      "layout_size": "Split",
+      "profile": "Normal",
+      "switch_technology": "Mechanical",
+      "switch_feels_available": ["Linear", "Tactile", "Clicky"],
+      "switch_hotswap": false,
+      "backlight": "None",
+      "connectivity": ["USB-C"],
+      "os_compatibility": ["Windows", "macOS"],
+      "customization_method": "Software",
+      "weight_g": 800,
+      "release_date": "2023-10"
+    },
+    "japan_context": {
+      "availability": "Available",
+      "giteki": "Wired Only",
+      "purchase_urls": [
+        "https://www.diatec.co.jp/en/xacro/m10sp.php",
+        "https://www.amazon.co.jp/dp/B0CKSS2VB3"
+      ]
+    },
+    "tags": ["split"]
+  }
+]

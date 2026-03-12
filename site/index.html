@@ -23,13 +23,6 @@
       --bg-tertiary: #21262d;
       --text-primary: #c9d1d9;
       --text-secondary: #8b949e;
-      --accent-green: #58a6ff;
-      --accent-orange: #fb8500;
-      --badge-red: #f85149;
-      --badge-yellow: #d29922;
-      --badge-green: #3fb950;
-      --badge-blue: #58a6ff;
-      --badge-purple: #bc8ef9;
       --border-color: #30363d;
       --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
       --table-row-hover: rgba(88, 166, 255, 0.1);
@@ -38,22 +31,12 @@
     /* ライトモード */
     html.light-mode {
       color-scheme: light;
-    }
-
-    html.light-mode {
       --bg-primary: #ffffff;
-      --bg-secondary: #f6f8fa;
-      --bg-tertiary: #eaeef2;
-      --text-primary: #1f2328;
-      --text-secondary: #656d76;
-      --accent-green: #0969da;
-      --accent-orange: #bf8700;
-      --badge-red: #d1242f;
-      --badge-yellow: #9e6a03;
-      --badge-green: #1a7f0f;
-      --badge-blue: #0969da;
-      --badge-purple: #6f42c1;
-      --border-color: #d0d7de;
+      --bg-secondary: #f8fafc;
+      --bg-tertiary: #f1f5f9;
+      --text-primary: #1e293b;
+      --text-secondary: #64748b;
+      --border-color: #e2e8f0;
       --table-row-hover: rgba(9, 105, 218, 0.05);
     }
 
@@ -100,7 +83,7 @@
       font-family: var(--font-mono);
       font-size: 2rem;
       font-weight: 600;
-      color: var(--accent-green);
+      color: var(--text-primary);
       margin-bottom: 0.5rem;
       letter-spacing: 1px;
     }
@@ -129,14 +112,14 @@
     }
 
     .theme-toggle:hover {
-      border-color: var(--accent-green);
+      border-color: var(--text-primary);
       background-color: rgba(88, 166, 255, 0.1);
     }
 
     .header .counter {
       font-family: var(--font-mono);
       font-size: 0.9rem;
-      color: var(--accent-green);
+      color: var(--text-secondary);
       letter-spacing: 0.5px;
       width: 100%;
     }
@@ -148,55 +131,104 @@
       overflow-x: auto;
     }
 
-    .search-and-clear {
-      display: flex;
-      gap: 1rem;
+    /* ========== フィルタパネル ========== */
+    .filter-section {
       margin-bottom: 2rem;
-      align-items: flex-end;
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      transition: border-color 0.2s ease;
     }
 
-    .search-box {
-      flex: 1;
+    .filter-toggle {
+      width: 100%;
+      padding: 1rem;
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+    }
+
+    .filter-toggle:hover {
+      background-color: var(--bg-tertiary);
+    }
+
+    .filter-toggle-icon {
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+
+    .filter-toggle.active .filter-toggle-icon {
+      transform: rotate(180deg);
+    }
+
+    .filter-panel {
+      display: none;
+      padding: 1.5rem;
+      border-top: 1px solid var(--border-color);
+      background-color: var(--bg-secondary);
+    }
+
+    .filter-panel.active {
+      display: block;
+    }
+
+    .filter-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .filter-group {
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
     }
 
-    .search-box label {
+    .filter-group label {
       font-family: var(--font-mono);
-      font-size: 0.85rem;
+      font-size: 0.75rem;
       font-weight: 600;
       color: var(--text-secondary);
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
 
-    .search-box input {
-      padding: 0.7rem;
-      background-color: var(--bg-secondary);
+    .filter-group select {
+      padding: 0.6rem;
+      background-color: var(--bg-primary);
       border: 1px solid var(--border-color);
       border-radius: 4px;
       color: var(--text-primary);
       font-family: var(--font-mono);
       font-size: 0.9rem;
+      cursor: pointer;
       transition: all 0.2s ease;
     }
 
-    .search-box input::placeholder {
-      color: var(--text-secondary);
+    .filter-group select:hover {
+      border-color: var(--text-primary);
     }
 
-    .search-box input:focus {
+    .filter-group select:focus {
       outline: none;
-      border-color: var(--accent-green);
-      box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.2);
+      border-color: var(--text-primary);
     }
 
-    html.light-mode .search-box input:focus {
-      box-shadow: 0 0 0 2px rgba(9, 105, 218, 0.1);
+    .filter-actions {
+      display: flex;
+      gap: 1rem;
     }
 
-    .clear-filters-btn {
+    .reset-filters-btn {
       padding: 0.7rem 1rem;
       background-color: var(--bg-tertiary);
       border: 1px solid var(--border-color);
@@ -211,12 +243,12 @@
       letter-spacing: 0.5px;
     }
 
-    .clear-filters-btn:hover {
-      border-color: var(--accent-green);
+    .reset-filters-btn:hover {
+      border-color: var(--text-primary);
       background-color: var(--bg-secondary);
     }
 
-    .clear-filters-btn:disabled {
+    .reset-filters-btn:disabled {
       opacity: 0.5;
       cursor: not-allowed;
     }
@@ -238,11 +270,11 @@
 
     thead {
       background-color: var(--bg-tertiary);
-      border-bottom: 2px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
     }
 
     th {
-      padding: 0.8rem;
+      padding: 1rem 0.8rem;
       text-align: left;
       font-family: var(--font-mono);
       font-weight: 600;
@@ -257,8 +289,25 @@
       border-right: none;
     }
 
+    .sort-button {
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.75rem;
+      margin-left: 0.4rem;
+      padding: 0.2rem 0.4rem;
+      display: inline-block;
+      transition: all 0.2s ease;
+    }
+
+    .sort-button:hover {
+      color: var(--text-secondary);
+    }
+
     td {
-      padding: 1rem 0.8rem;
+      padding: 1.2rem 0.8rem;
       border-bottom: 1px solid var(--border-color);
       border-right: 1px solid var(--border-color);
       color: var(--text-primary);
@@ -271,6 +320,11 @@
 
     tbody tr {
       transition: background-color 0.2s ease;
+      background-color: var(--bg-secondary);
+    }
+
+    html.light-mode tbody tr:nth-child(even) {
+      background-color: #f8fafc;
     }
 
     tbody tr:hover {
@@ -281,110 +335,30 @@
       border-bottom: none;
     }
 
+    /* 行番号列 */
+    .row-number {
+      text-align: center;
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      font-weight: 500;
+      min-width: 50px;
+    }
+
     /* 製品名セル */
     .product-cell {
       min-width: 220px;
     }
 
-    .product-brand {
-      font-size: 0.75rem;
-      font-family: var(--font-mono);
-      text-transform: uppercase;
-      color: var(--accent-orange);
-      letter-spacing: 1px;
-      font-weight: 600;
-      margin-bottom: 0.2rem;
-    }
-
     .product-name {
       font-weight: 600;
       color: var(--text-primary);
+      margin-bottom: 0.3rem;
     }
 
-    /* フィルタドロップダウン */
-    .filter-dropdown {
-      position: relative;
-      display: inline-block;
-      width: 100%;
-    }
-
-    .filter-button {
-      width: 100%;
-      padding: 0.5rem;
-      background-color: transparent;
-      border: none;
-      color: var(--text-primary);
-      font-family: inherit;
-      font-size: 0.85rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      justify-content: space-between;
-      transition: all 0.2s ease;
-    }
-
-    .filter-button:hover {
-      color: var(--accent-green);
-    }
-
-    .filter-button.active {
-      color: var(--accent-green);
-    }
-
-    .filter-icon {
-      display: inline-block;
-      width: 16px;
-      height: 16px;
-      font-size: 0.8rem;
-      line-height: 1;
-    }
-
-    .filter-menu {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background-color: var(--bg-secondary);
-      border: 1px solid var(--accent-green);
-      border-radius: 4px;
-      padding: 0.5rem;
-      min-width: 200px;
-      z-index: 100;
-      max-height: 250px;
-      overflow-y: auto;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      display: none;
-    }
-
-    html.light-mode .filter-menu {
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    .filter-menu.active {
-      display: block;
-    }
-
-    .filter-menu label {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem;
-      cursor: pointer;
-      font-size: 0.85rem;
-      user-select: none;
-      border-radius: 3px;
-      transition: background-color 0.2s ease;
-    }
-
-    .filter-menu label:hover {
-      background-color: var(--bg-tertiary);
-    }
-
-    .filter-menu input[type="checkbox"] {
-      cursor: pointer;
-      width: 16px;
-      height: 16px;
-      accent-color: var(--accent-green);
+    .product-id {
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      color: var(--text-secondary);
     }
 
     /* バッジ */
@@ -398,112 +372,115 @@
       white-space: nowrap;
     }
 
-    .badge-feel-linear {
-      background-color: rgba(248, 81, 73, 0.2);
-      color: #f85149;
-      border: 1px solid #f85149;
+    /* レイアウトバッジ */
+    .badge-layout {
+      color: white;
+      font-weight: 600;
     }
 
-    html.light-mode .badge-feel-linear {
-      background-color: rgba(209, 36, 47, 0.1);
-      color: #d1242f;
-      border: 1px solid #d1242f;
+    .badge-layout-100 {
+      background-color: #2563eb;
+    }
+
+    .badge-layout-80 {
+      background-color: #16a34a;
+    }
+
+    .badge-layout-75 {
+      background-color: #8b5cf6;
+    }
+
+    .badge-layout-65 {
+      background-color: #0891b2;
+    }
+
+    .badge-layout-60 {
+      background-color: #ea580c;
+    }
+
+    .badge-layout-40 {
+      background-color: #dc2626;
+    }
+
+    .badge-layout-split {
+      background-color: #db2777;
+    }
+
+    /* スイッチフィール */
+    .badge-feel {
+      font-weight: 500;
+      display: inline-block;
+      margin-right: 0.4rem;
+    }
+
+    .badge-feel-linear {
+      background-color: #ef4444;
+      color: white;
     }
 
     .badge-feel-tactile {
-      background-color: rgba(188, 142, 249, 0.2);
-      color: #bc8ef9;
-      border: 1px solid #bc8ef9;
-    }
-
-    html.light-mode .badge-feel-tactile {
-      background-color: rgba(111, 66, 193, 0.1);
-      color: #6f42c1;
-      border: 1px solid #6f42c1;
+      background-color: #a855f7;
+      color: white;
     }
 
     .badge-feel-clicky {
-      background-color: rgba(88, 166, 255, 0.2);
-      color: #58a6ff;
-      border: 1px solid #58a6ff;
+      background-color: #3b82f6;
+      color: white;
     }
 
-    html.light-mode .badge-feel-clicky {
-      background-color: rgba(9, 105, 218, 0.1);
-      color: #0969da;
-      border: 1px solid #0969da;
+    /* ホットスワップ */
+    .hotswap-yes {
+      color: #16a34a;
+      font-weight: 600;
+      font-family: var(--font-mono);
     }
 
-    .badge-available {
-      background-color: rgba(63, 185, 80, 0.2);
-      color: #3fb950;
-      border: 1px solid #3fb950;
+    .hotswap-no {
+      color: #dc2626;
+      font-weight: 600;
+      font-family: var(--font-mono);
     }
 
-    html.light-mode .badge-available {
-      background-color: rgba(26, 127, 15, 0.1);
-      color: #1a7f0f;
-      border: 1px solid #1a7f0f;
-    }
-
-    .badge-import {
-      background-color: rgba(210, 153, 34, 0.2);
-      color: #d29922;
-      border: 1px solid #d29922;
-    }
-
-    html.light-mode .badge-import {
-      background-color: rgba(158, 106, 3, 0.1);
-      color: #9e6a03;
-      border: 1px solid #9e6a03;
-    }
-
-    .badge-unavailable {
-      background-color: rgba(248, 81, 73, 0.2);
-      color: #f85149;
-      border: 1px solid #f85149;
-    }
-
-    html.light-mode .badge-unavailable {
-      background-color: rgba(209, 36, 47, 0.1);
-      color: #d1242f;
-      border: 1px solid #d1242f;
-    }
-
+    /* 接続バッジ */
     .badge-connectivity {
       background-color: var(--bg-tertiary);
       color: var(--text-secondary);
       border: 1px solid var(--border-color);
+      margin-right: 0.4rem;
     }
 
-    /* 認証アイコン */
+    /* 技適アイコン */
     .cert-icon {
       font-size: 1.1rem;
     }
 
-    .cert-tooltip {
-      position: relative;
-      display: inline-block;
-      cursor: help;
+    /* 入手性バッジ */
+    .badge-availability {
+      color: white;
+      font-weight: 600;
     }
 
-    .cert-tooltip:hover::after {
-      content: attr(data-tooltip);
-      position: absolute;
-      bottom: 125%;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: var(--bg-tertiary);
-      color: var(--text-primary);
-      padding: 0.5rem 0.8rem;
-      border-radius: 4px;
-      font-size: 0.75rem;
-      white-space: nowrap;
-      z-index: 101;
-      border: 1px solid var(--border-color);
+    .badge-available {
+      background-color: #16a34a;
+    }
+
+    .badge-import {
+      background-color: #eab308;
+      color: #000;
+    }
+
+    .badge-unavailable {
+      background-color: #dc2626;
     }
 
     /* 購入ボタン */
+    .purchase-links-cell {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      min-width: 100px;
+    }
+
     .purchase-btn {
       display: inline-flex;
       align-items: center;
@@ -512,28 +489,17 @@
       background-color: var(--bg-tertiary);
       border: 1px solid var(--border-color);
       border-radius: 4px;
-      color: var(--accent-green);
+      color: var(--text-primary);
       text-decoration: none;
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       font-family: var(--font-mono);
       transition: all 0.2s ease;
       white-space: nowrap;
     }
 
     .purchase-btn:hover {
-      border-color: var(--accent-green);
-      background-color: rgba(88, 166, 255, 0.1);
-    }
-
-    html.light-mode .purchase-btn:hover {
-      background-color: rgba(9, 105, 218, 0.05);
-    }
-
-    .purchase-links-cell {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      min-width: 120px;
+      border-color: var(--text-primary);
+      background-color: var(--bg-primary);
     }
 
     /* 空状態 */
@@ -550,96 +516,41 @@
       font-size: 1.2rem;
     }
 
+    /* 注意書き */
+    .notice {
+      background-color: #fef3c7;
+      color: #92400e;
+      padding: 1rem;
+      border-radius: 4px;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      border-left: 4px solid #f59e0b;
+    }
+
+    html.light-mode .notice {
+      background-color: #fef3c7;
+      color: #92400e;
+    }
+
     /* ========== レスポンシブ（モバイル） ========== */
     @media (max-width: 768px) {
       .main-content {
         padding: 1rem;
       }
 
-      .search-and-clear {
-        flex-direction: column;
-        gap: 0.8rem;
+      .filter-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
       }
 
-      .clear-filters-btn {
-        width: 100%;
-      }
-
-      /* モバイル時はカード表示に切り替え */
+      /* テーブルは横スクロール */
       .table-wrapper {
-        border: none;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
       }
 
       table {
-        display: block;
-      }
-
-      thead {
-        display: none;
-      }
-
-      tbody {
-        display: block;
-      }
-
-      tbody tr {
-        display: block;
-        margin-bottom: 1.5rem;
-        background-color: var(--bg-secondary);
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        padding: 1rem;
-        overflow: hidden;
-      }
-
-      tbody tr:hover {
-        background-color: var(--table-row-hover);
-      }
-
-      td {
-        display: grid;
-        grid-template-columns: 100px 1fr;
-        gap: 0.5rem;
-        border: none;
-        padding: 0.5rem 0;
-        border-right: none;
-        align-items: start;
-      }
-
-      td::before {
-        content: attr(data-label);
-        font-weight: 600;
-        font-family: var(--font-mono);
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        color: var(--text-secondary);
-        letter-spacing: 0.5px;
-        word-break: break-word;
-      }
-
-      .product-cell {
-        grid-column: 1 / -1;
-        min-width: auto;
-      }
-
-      .product-cell::before {
-        content: '';
-        display: none;
-      }
-
-      .product-cell {
-        display: block;
-        padding: 0;
-        margin-bottom: 1rem;
-      }
-
-      .purchase-links-cell {
-        grid-column: 1 / -1;
-        min-width: auto;
-      }
-
-      .purchase-links-cell::before {
-        display: block;
+        min-width: 900px;
       }
     }
 
@@ -660,18 +571,13 @@
         padding: 0.75rem;
       }
 
-      td {
-        grid-template-columns: 80px 1fr;
-        padding: 0.4rem 0;
+      .filter-grid {
+        grid-template-columns: 1fr;
       }
 
       .purchase-btn {
         padding: 0.3rem 0.5rem;
         font-size: 0.65rem;
-      }
-
-      tbody tr {
-        padding: 0.75rem;
       }
     }
   </style>
@@ -690,65 +596,141 @@
     </header>
 
     <main class="main-content">
-      <div class="search-and-clear">
-        <div class="search-box">
-          <label for="searchInput">検索</label>
-          <input type="text" id="searchInput" placeholder="製品名・ブランド...">
+      <!-- フィルタパネル -->
+      <div class="filter-section">
+        <button class="filter-toggle" id="filterToggle">
+          <span>フィルターを表示 / 非表示</span>
+          <span class="filter-toggle-icon">▼</span>
+        </button>
+        <div class="filter-panel" id="filterPanel">
+          <div class="filter-grid">
+            <!-- テキスト検索 -->
+            <div class="filter-group">
+              <label for="searchInput">テキスト検索</label>
+              <input type="text" id="searchInput" placeholder="名前で検索..." style="padding: 0.6rem; border: 1px solid var(--border-color); border-radius: 4px; background-color: var(--bg-primary); color: var(--text-primary); font-family: var(--font-mono); font-size: 0.9rem;">
+            </div>
+
+            <!-- ブランド -->
+            <div class="filter-group">
+              <label for="brandFilter">ブランド</label>
+              <select id="brandFilter">
+                <option value="">すべて</option>
+              </select>
+            </div>
+
+            <!-- レイアウト -->
+            <div class="filter-group">
+              <label for="layoutFilter">レイアウト</label>
+              <select id="layoutFilter">
+                <option value="">すべて</option>
+                <option value="40%">40%</option>
+                <option value="60%">60%</option>
+                <option value="65%">65%</option>
+                <option value="75%">75%</option>
+                <option value="80% (TKL)">80% (TKL)</option>
+                <option value="100% (Full)">100% (Full)</option>
+                <option value="Split">Split</option>
+              </select>
+            </div>
+
+            <!-- スイッチ技術 -->
+            <div class="filter-group">
+              <label for="switchFilter">スイッチ技術</label>
+              <select id="switchFilter">
+                <option value="">すべて</option>
+                <option value="Mechanical">Mechanical</option>
+                <option value="Topre (Capacitive)">Topre (Capacitive)</option>
+                <option value="Hall Effect (Magnetic)">Hall Effect (Magnetic)</option>
+                <option value="Optical">Optical</option>
+              </select>
+            </div>
+
+            <!-- スイッチフィール -->
+            <div class="filter-group">
+              <label for="feelFilter">スイッチフィール</label>
+              <select id="feelFilter">
+                <option value="">すべて</option>
+                <option value="Linear">Linear</option>
+                <option value="Tactile">Tactile</option>
+                <option value="Clicky">Clicky</option>
+              </select>
+            </div>
+
+            <!-- 接続方式 -->
+            <div class="filter-group">
+              <label for="connectivityFilter">接続方式</label>
+              <select id="connectivityFilter">
+                <option value="">すべて</option>
+                <option value="USB-A">USB-A</option>
+                <option value="USB-C">USB-C</option>
+                <option value="Mini USB">Mini USB</option>
+                <option value="Bluetooth">Bluetooth</option>
+                <option value="2.4GHz Dongle">2.4GHz Dongle</option>
+              </select>
+            </div>
+
+            <!-- プロファイル -->
+            <div class="filter-group">
+              <label for="profileFilter">プロファイル</label>
+              <select id="profileFilter">
+                <option value="">すべて</option>
+                <option value="Normal">Normal</option>
+                <option value="Low-Profile">Low-Profile</option>
+              </select>
+            </div>
+
+            <!-- ホットスワップ -->
+            <div class="filter-group">
+              <label for="hotswapFilter">ホットスワップ</label>
+              <select id="hotswapFilter">
+                <option value="">すべて</option>
+                <option value="true">対応</option>
+                <option value="false">非対応</option>
+              </select>
+            </div>
+
+            <!-- 技適 -->
+            <div class="filter-group">
+              <label for="gitekiFilter">技適</label>
+              <select id="gitekiFilter">
+                <option value="">すべて</option>
+                <option value="Certified">認証済</option>
+                <option value="Wired Only">ワイヤードのみ</option>
+                <option value="No/Unknown">未認証/不明</option>
+              </select>
+            </div>
+
+            <!-- タグ -->
+            <div class="filter-group">
+              <label for="tagFilter">タグ</label>
+              <select id="tagFilter">
+                <option value="">すべて</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="filter-actions">
+            <button class="reset-filters-btn" id="resetFiltersBtn">リセット</button>
+          </div>
         </div>
-        <button class="clear-filters-btn" id="clearFiltersBtn">フィルタをクリア</button>
       </div>
 
+      <!-- テーブル -->
       <div class="table-wrapper">
         <table id="keyboardTable">
           <thead>
             <tr>
-              <th>製品名</th>
-              <th>
-                <div class="filter-dropdown">
-                  <button class="filter-button" data-column="layout">
-                    サイズ
-                    <span class="filter-icon">⤓</span>
-                  </button>
-                  <div class="filter-menu" data-column="layout"></div>
-                </div>
-              </th>
-              <th>
-                <div class="filter-dropdown">
-                  <button class="filter-button" data-column="switch">
-                    スイッチ
-                    <span class="filter-icon">⤓</span>
-                  </button>
-                  <div class="filter-menu" data-column="switch"></div>
-                </div>
-              </th>
-              <th>
-                <div class="filter-dropdown">
-                  <button class="filter-button" data-column="connectivity">
-                    接続
-                    <span class="filter-icon">⤓</span>
-                  </button>
-                  <div class="filter-menu" data-column="connectivity"></div>
-                </div>
-              </th>
-              <th>フィール</th>
-              <th>
-                <div class="filter-dropdown">
-                  <button class="filter-button" data-column="giteki">
-                    技適
-                    <span class="filter-icon">⤓</span>
-                  </button>
-                  <div class="filter-menu" data-column="giteki"></div>
-                </div>
-              </th>
-              <th>
-                <div class="filter-dropdown">
-                  <button class="filter-button" data-column="availability">
-                    入手性
-                    <span class="filter-icon">⤓</span>
-                  </button>
-                  <div class="filter-menu" data-column="availability"></div>
-                </div>
-              </th>
+              <th>#</th>
+              <th>モデル名 <button class="sort-button" data-column="name">▲▼</button></th>
+              <th>レイアウト <button class="sort-button" data-column="layout">▲▼</button></th>
+              <th>プロファイル <button class="sort-button" data-column="profile">▲▼</button></th>
+              <th>スイッチ技術 <button class="sort-button" data-column="switch">▲▼</button></th>
+              <th>スイッチフィール</th>
+              <th>ホットスワップ</th>
+              <th>バックライト</th>
+              <th>接続</th>
+              <th>技適</th>
+              <th>入手性</th>
               <th>購入</th>
             </tr>
           </thead>
@@ -760,6 +742,10 @@
       <div id="emptyState" class="empty-state" style="display: none;">
         <h2>キーボードが見つかりません</h2>
         <p>別のフィルタを試してください</p>
+      </div>
+
+      <div class="notice">
+        ※ データは2026年3月時点のものです。最新情報は公式サイトでご確認ください。
       </div>
     </main>
   </div>
@@ -792,17 +778,34 @@
       setTheme(newTheme);
     });
 
+    // ========== フィルタトグル ==========
+    const filterToggle = document.getElementById('filterToggle');
+    const filterPanel = document.getElementById('filterPanel');
+
+    filterToggle.addEventListener('click', () => {
+      filterToggle.classList.toggle('active');
+      filterPanel.classList.toggle('active');
+    });
+
     // ========== データ管理 ==========
     let allKeyboards = [];
     let filteredKeyboards = [];
+    let sortState = {
+      column: null,
+      direction: null // 'asc', 'desc'
+    };
 
     const filterState = {
-      layout: new Set(),
-      switch: new Set(),
-      connectivity: new Set(),
-      giteki: new Set(),
-      availability: new Set(),
-      search: ''
+      search: '',
+      brand: '',
+      layout: '',
+      switch: '',
+      feel: '',
+      connectivity: '',
+      profile: '',
+      hotswap: '',
+      giteki: '',
+      tag: ''
     };
 
     // ========== データ読み込み ==========
@@ -835,131 +838,110 @@
 
     // ========== フィルタ初期化 ==========
     function initializeFilters() {
-      const filterConfigs = {
-        layout: {
-          options: ['40%', '60%', '65%', '75%', '80% (TKL)', '100% (Full)', 'Split'],
-          extractor: (kb) => kb.specs.layout_size
-        },
-        switch: {
-          options: ['Mechanical', 'Topre (Capacitive)', 'Hall Effect (Magnetic)', 'Optical'],
-          extractor: (kb) => kb.specs.switch_technology
-        },
-        connectivity: {
-          options: ['USB-A', 'USB-C', 'Mini USB', 'Bluetooth', '2.4GHz Dongle'],
-          extractor: (kb) => kb.specs.connectivity
-        },
-        giteki: {
-          options: [
-            { value: 'Certified', label: '技適認証済' },
-            { value: 'Wired Only', label: 'ワイヤードのみ' },
-            { value: 'No/Unknown', label: '未認証/不明' }
-          ],
-          extractor: (kb) => kb.japan_context.giteki
-        },
-        availability: {
-          options: [
-            { value: 'Available', label: '国内販売' },
-            { value: 'Import Only', label: '輸入のみ' },
-            { value: 'Unavailable', label: '入手不可' }
-          ],
-          extractor: (kb) => kb.japan_context.availability
-        }
-      };
+      // ブランド
+      const brands = [...new Set(allKeyboards.map(kb => kb.brand))].sort();
+      const brandSelect = document.getElementById('brandFilter');
+      brands.forEach(brand => {
+        const option = document.createElement('option');
+        option.value = brand;
+        option.textContent = brand;
+        brandSelect.appendChild(option);
+      });
 
-      Object.entries(filterConfigs).forEach(([key, config]) => {
-        const menu = document.querySelector(`.filter-menu[data-column="${key}"]`);
-        menu.innerHTML = '';
-
-        config.options.forEach(option => {
-          const value = option.value || option;
-          const label = option.label || option;
-          const id = `filter-${key}-${value}`;
-
-          const labelEl = document.createElement('label');
-          labelEl.innerHTML = `
-            <input type="checkbox" id="${id}" value="${value}" data-column="${key}">
-            <span>${label}</span>
-          `;
-
-          labelEl.querySelector('input').addEventListener('change', (e) => {
-            if (e.target.checked) {
-              filterState[key].add(value);
-            } else {
-              filterState[key].delete(value);
-            }
-            applyFilters();
-            updateFilterButtonStates();
-          });
-
-          menu.appendChild(labelEl);
-        });
+      // タグ
+      const allTags = [...new Set(allKeyboards.flatMap(kb => kb.tags || []))].sort();
+      const tagSelect = document.getElementById('tagFilter');
+      allTags.forEach(tag => {
+        const option = document.createElement('option');
+        option.value = tag;
+        option.textContent = tag;
+        tagSelect.appendChild(option);
       });
     }
 
-    // ========== フィルタボタン状態更新 ==========
-    function updateFilterButtonStates() {
-      document.querySelectorAll('.filter-button').forEach(btn => {
-        const column = btn.getAttribute('data-column');
-        if (filterState[column].size > 0) {
-          btn.classList.add('active');
-        } else {
-          btn.classList.remove('active');
-        }
-      });
-    }
-
-    // ========== フィルタドロップダウン制御 ==========
-    document.querySelectorAll('.filter-button').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const column = btn.getAttribute('data-column');
-        const menu = document.querySelector(`.filter-menu[data-column="${column}"]`);
-
-        document.querySelectorAll('.filter-menu.active').forEach(m => {
-          if (m !== menu) m.classList.remove('active');
-        });
-
-        menu.classList.toggle('active');
-      });
+    // ========== フィルタイベント ==========
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      filterState.search = e.target.value;
+      applyFilters();
     });
 
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('.filter-dropdown')) {
-        document.querySelectorAll('.filter-menu.active').forEach(m => m.classList.remove('active'));
-      }
+    document.getElementById('brandFilter').addEventListener('change', (e) => {
+      filterState.brand = e.target.value;
+      applyFilters();
+    });
+
+    document.getElementById('layoutFilter').addEventListener('change', (e) => {
+      filterState.layout = e.target.value;
+      applyFilters();
+    });
+
+    document.getElementById('switchFilter').addEventListener('change', (e) => {
+      filterState.switch = e.target.value;
+      applyFilters();
+    });
+
+    document.getElementById('feelFilter').addEventListener('change', (e) => {
+      filterState.feel = e.target.value;
+      applyFilters();
+    });
+
+    document.getElementById('connectivityFilter').addEventListener('change', (e) => {
+      filterState.connectivity = e.target.value;
+      applyFilters();
+    });
+
+    document.getElementById('profileFilter').addEventListener('change', (e) => {
+      filterState.profile = e.target.value;
+      applyFilters();
+    });
+
+    document.getElementById('hotswapFilter').addEventListener('change', (e) => {
+      filterState.hotswap = e.target.value;
+      applyFilters();
+    });
+
+    document.getElementById('gitekiFilter').addEventListener('change', (e) => {
+      filterState.giteki = e.target.value;
+      applyFilters();
+    });
+
+    document.getElementById('tagFilter').addEventListener('change', (e) => {
+      filterState.tag = e.target.value;
+      applyFilters();
+    });
+
+    // ========== リセットボタン ==========
+    document.getElementById('resetFiltersBtn').addEventListener('click', () => {
+      filterState.search = '';
+      filterState.brand = '';
+      filterState.layout = '';
+      filterState.switch = '';
+      filterState.feel = '';
+      filterState.connectivity = '';
+      filterState.profile = '';
+      filterState.hotswap = '';
+      filterState.giteki = '';
+      filterState.tag = '';
+
+      document.getElementById('searchInput').value = '';
+      document.getElementById('brandFilter').value = '';
+      document.getElementById('layoutFilter').value = '';
+      document.getElementById('switchFilter').value = '';
+      document.getElementById('feelFilter').value = '';
+      document.getElementById('connectivityFilter').value = '';
+      document.getElementById('profileFilter').value = '';
+      document.getElementById('hotswapFilter').value = '';
+      document.getElementById('gitekiFilter').value = '';
+      document.getElementById('tagFilter').value = '';
+
+      sortState.column = null;
+      sortState.direction = null;
+      applyFilters();
     });
 
     // ========== フィルタ適用 ==========
     function applyFilters() {
       filteredKeyboards = allKeyboards.filter(kb => {
-        // レイアウト
-        if (filterState.layout.size > 0 && !filterState.layout.has(kb.specs.layout_size)) {
-          return false;
-        }
-
-        // スイッチ技術
-        if (filterState.switch.size > 0 && !filterState.switch.has(kb.specs.switch_technology)) {
-          return false;
-        }
-
-        // 接続方式
-        if (filterState.connectivity.size > 0) {
-          const hasConnectivity = Array.from(filterState.connectivity).some(conn =>
-            kb.specs.connectivity.includes(conn)
-          );
-          if (!hasConnectivity) return false;
-        }
-
-        // 技適
-        if (filterState.giteki.size > 0 && !filterState.giteki.has(kb.japan_context.giteki)) {
-          return false;
-        }
-
-        // 入手性
-        if (filterState.availability.size > 0 && !filterState.availability.has(kb.japan_context.availability)) {
-          return false;
-        }
-
         // テキスト検索
         if (filterState.search.trim() !== '') {
           const searchLower = filterState.search.toLowerCase();
@@ -968,12 +950,89 @@
           if (!matchesName && !matchesBrand) return false;
         }
 
+        // ブランド
+        if (filterState.brand && kb.brand !== filterState.brand) return false;
+
+        // レイアウト
+        if (filterState.layout && kb.specs.layout_size !== filterState.layout) return false;
+
+        // スイッチ技術
+        if (filterState.switch && kb.specs.switch_technology !== filterState.switch) return false;
+
+        // スイッチフィール
+        if (filterState.feel && !kb.specs.switch_feels_available.includes(filterState.feel)) return false;
+
+        // 接続方式
+        if (filterState.connectivity && !kb.specs.connectivity.includes(filterState.connectivity)) return false;
+
+        // プロファイル
+        if (filterState.profile && kb.specs.profile !== filterState.profile) return false;
+
+        // ホットスワップ
+        if (filterState.hotswap !== '') {
+          const hotswapValue = filterState.hotswap === 'true';
+          if (kb.specs.switch_hotswap !== hotswapValue) return false;
+        }
+
+        // 技適
+        if (filterState.giteki && kb.japan_context.giteki !== filterState.giteki) return false;
+
+        // タグ
+        if (filterState.tag && !kb.tags.includes(filterState.tag)) return false;
+
         return true;
       });
+
+      // ソート適用
+      if (sortState.column && sortState.direction) {
+        filteredKeyboards.sort((a, b) => {
+          let valA, valB;
+
+          if (sortState.column === 'name') {
+            valA = a.name.toLowerCase();
+            valB = b.name.toLowerCase();
+          } else if (sortState.column === 'layout') {
+            const layoutOrder = { '40%': 1, '60%': 2, '65%': 3, '75%': 4, '80% (TKL)': 5, '100% (Full)': 6, 'Split': 7 };
+            valA = layoutOrder[a.specs.layout_size] || 999;
+            valB = layoutOrder[b.specs.layout_size] || 999;
+          } else if (sortState.column === 'profile') {
+            valA = a.specs.profile.toLowerCase();
+            valB = b.specs.profile.toLowerCase();
+          } else if (sortState.column === 'switch') {
+            valA = a.specs.switch_technology.toLowerCase();
+            valB = b.specs.switch_technology.toLowerCase();
+          }
+
+          if (valA < valB) return sortState.direction === 'asc' ? -1 : 1;
+          if (valA > valB) return sortState.direction === 'asc' ? 1 : -1;
+          return 0;
+        });
+      }
 
       renderTable();
       updateCounter();
     }
+
+    // ========== ソートボタン ==========
+    document.querySelectorAll('.sort-button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const column = btn.getAttribute('data-column');
+
+        if (sortState.column === column) {
+          if (sortState.direction === 'asc') {
+            sortState.direction = 'desc';
+          } else if (sortState.direction === 'desc') {
+            sortState.column = null;
+            sortState.direction = null;
+          }
+        } else {
+          sortState.column = column;
+          sortState.direction = 'asc';
+        }
+
+        applyFilters();
+      });
+    });
 
     // ========== テーブル表示 ==========
     function renderTable() {
@@ -987,24 +1046,49 @@
       }
 
       emptyState.style.display = 'none';
-      tbody.innerHTML = filteredKeyboards.map(kb => createTableRow(kb)).join('');
+      tbody.innerHTML = filteredKeyboards.map((kb, index) => createTableRow(kb, index + 1)).join('');
     }
 
-    function createTableRow(kb) {
+    function createTableRow(kb, rowNumber) {
+      // レイアウトバッジ
+      const layoutClass = kb.specs.layout_size
+        .replace('100% (Full)', '100')
+        .replace('80% (TKL)', '80')
+        .replace('75%', '75')
+        .replace('65%', '65')
+        .replace('60%', '60')
+        .replace('40%', '40')
+        .replace('Split', 'split');
+
+      const layoutBadge = `<span class="badge badge-layout badge-layout-${layoutClass}">${kb.specs.layout_size}</span>`;
+
       // スイッチフィール
       const feelsHtml = kb.specs.switch_feels_available.map(feel => {
         const feelClass = feel === 'Linear' ? 'badge-feel-linear' :
                          feel === 'Tactile' ? 'badge-feel-tactile' :
                          'badge-feel-clicky';
-        return `<span class="badge ${feelClass}">${feel}</span>`;
+        return `<span class="badge badge-feel ${feelClass}">${feel}</span>`;
       }).join('');
+
+      // ホットスワップ
+      const hotswapHtml = kb.specs.switch_hotswap
+        ? '<span class="hotswap-yes">○</span>'
+        : '<span class="hotswap-no">✕</span>';
+
+      // バックライト
+      const backlightText = kb.specs.backlight || 'None';
+
+      // 接続方式
+      const connectivityHtml = kb.specs.connectivity.map(conn =>
+        `<span class="badge badge-connectivity">${conn}</span>`
+      ).join('');
 
       // 技適
       const gitekiInfo = {
-        'Certified': { icon: '✅', tooltip: '技適認証済' },
-        'Wired Only': { icon: '➖', tooltip: 'ワイヤード接続のみ' },
-        'No/Unknown': { icon: '❌', tooltip: '未認証/不明' }
-      }[kb.japan_context.giteki];
+        'Certified': '✅',
+        'Wired Only': '➖',
+        'No/Unknown': '❌'
+      }[kb.japan_context.giteki] || '❌';
 
       // 入手性
       const availabilityClass =
@@ -1027,28 +1111,23 @@
         return `<a href="${url}" target="_blank" class="purchase-btn">${label}</a>`;
       }).join('');
 
-      // 接続方式バッジ
-      const connectivityHtml = kb.specs.connectivity.map(conn =>
-        `<span class="badge badge-connectivity">${conn}</span>`
-      ).join('');
-
       return `
         <tr>
-          <td class="product-cell" data-label="製品名">
-            <div class="product-brand">${kb.brand}</div>
+          <td class="row-number">${rowNumber}</td>
+          <td class="product-cell">
             <div class="product-name">${kb.name}</div>
+            <div class="product-id">${kb.id}</div>
           </td>
-          <td data-label="サイズ">${kb.specs.layout_size}</td>
-          <td data-label="スイッチ">${kb.specs.switch_technology}</td>
-          <td data-label="接続">${connectivityHtml}</td>
-          <td data-label="フィール">${feelsHtml}</td>
-          <td data-label="技適">
-            <span class="cert-tooltip cert-icon" data-tooltip="${gitekiInfo.tooltip}">
-              ${gitekiInfo.icon}
-            </span>
-          </td>
-          <td data-label="入手性"><span class="badge ${availabilityClass}">${availabilityLabel}</span></td>
-          <td class="purchase-links-cell" data-label="購入">${purchaseLinksHtml}</td>
+          <td>${layoutBadge}</td>
+          <td>${kb.specs.profile}</td>
+          <td>${kb.specs.switch_technology}</td>
+          <td>${feelsHtml}</td>
+          <td>${hotswapHtml}</td>
+          <td>${backlightText}</td>
+          <td>${connectivityHtml}</td>
+          <td><span class="cert-icon">${gitekiInfo}</span></td>
+          <td><span class="badge badge-availability ${availabilityClass}">${availabilityLabel}</span></td>
+          <td class="purchase-links-cell">${purchaseLinksHtml}</td>
         </tr>
       `;
     }
@@ -1061,28 +1140,6 @@
       document.getElementById('modelCount').textContent = modelCount;
       document.getElementById('brandCount').textContent = brandCount;
     }
-
-    // ========== 検索入力 ==========
-    document.getElementById('searchInput').addEventListener('input', (e) => {
-      filterState.search = e.target.value;
-      applyFilters();
-    });
-
-    // ========== フィルタクリア ==========
-    document.getElementById('clearFiltersBtn').addEventListener('click', () => {
-      filterState.layout.clear();
-      filterState.switch.clear();
-      filterState.connectivity.clear();
-      filterState.giteki.clear();
-      filterState.availability.clear();
-      filterState.search = '';
-
-      document.getElementById('searchInput').value = '';
-      document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
-
-      updateFilterButtonStates();
-      applyFilters();
-    });
 
     // ========== 初期化 ==========
     async function init() {

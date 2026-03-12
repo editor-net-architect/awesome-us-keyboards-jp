@@ -200,6 +200,19 @@
       color: var(--text-secondary);
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .filter-badge-count {
+      background-color: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 0.15rem 0.4rem;
+      font-size: 0.65rem;
+      color: var(--text-secondary);
+      margin-left: 0.3rem;
     }
 
     .filter-group select {
@@ -221,6 +234,89 @@
     .filter-group select:focus {
       outline: none;
       border-color: var(--text-primary);
+    }
+
+    /* カスタムマルチセレクト */
+    .multi-select-wrapper {
+      position: relative;
+    }
+
+    .multi-select-trigger {
+      padding: 0.6rem;
+      background-color: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      color: var(--text-primary);
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 38px;
+      width: 100%;
+    }
+
+    .multi-select-trigger:hover {
+      border-color: var(--text-primary);
+    }
+
+    .multi-select-trigger.active {
+      border-color: var(--text-primary);
+      background-color: var(--bg-tertiary);
+    }
+
+    .multi-select-dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background-color: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-top: none;
+      border-radius: 0 0 4px 4px;
+      margin-top: -1px;
+      z-index: 10;
+      max-height: 200px;
+      overflow-y: auto;
+      display: none;
+    }
+
+    .multi-select-dropdown.active {
+      display: block;
+    }
+
+    .multi-select-option {
+      padding: 0.6rem;
+      border-bottom: 1px solid var(--border-color);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: background-color 0.2s ease;
+    }
+
+    .multi-select-option:hover {
+      background-color: var(--bg-secondary);
+    }
+
+    .multi-select-option:last-child {
+      border-bottom: none;
+    }
+
+    .multi-select-option input[type="checkbox"] {
+      cursor: pointer;
+      width: 16px;
+      height: 16px;
+    }
+
+    .multi-select-option label {
+      cursor: pointer;
+      flex: 1;
+      margin: 0;
+      font-size: 0.9rem;
+      font-weight: 400;
     }
 
     .filter-actions {
@@ -266,6 +362,7 @@
       border-collapse: collapse;
       background-color: var(--bg-secondary);
       font-size: 0.9rem;
+      table-layout: fixed;
     }
 
     thead {
@@ -337,11 +434,7 @@
 
     /* 行番号列 */
     .row-number {
-      text-align: center;
-      color: var(--text-secondary);
-      font-family: var(--font-mono);
-      font-weight: 500;
-      min-width: 50px;
+      display: none;
     }
 
     /* 製品名セル */
@@ -407,10 +500,19 @@
     }
 
     /* スイッチフィール */
+    .switch-feels-container {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 0.3rem;
+      align-items: center;
+    }
+
     .badge-feel {
       font-weight: 500;
       display: inline-block;
-      margin-right: 0.4rem;
+      font-size: 0.65rem;
+      padding: 2px 6px;
+      flex-shrink: 0;
     }
 
     .badge-feel-linear {
@@ -476,30 +578,32 @@
     /* 購入ボタン */
     .purchase-links-cell {
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      min-width: 100px;
+      flex-direction: column;
+      gap: 0.3rem;
+      min-width: 80px;
     }
 
     .purchase-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      padding: 0.4rem 0.6rem;
-      background-color: var(--bg-tertiary);
-      border: 1px solid var(--border-color);
-      border-radius: 4px;
-      color: var(--text-primary);
+      display: inline;
+      color: #58a6ff;
       text-decoration: none;
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       font-family: var(--font-mono);
       transition: all 0.2s ease;
       white-space: nowrap;
     }
 
     .purchase-btn:hover {
-      border-color: var(--text-primary);
-      background-color: var(--bg-primary);
+      text-decoration: underline;
+      color: #79c0ff;
+    }
+
+    html.light-mode .purchase-btn {
+      color: #0969da;
+    }
+
+    html.light-mode .purchase-btn:hover {
+      color: #0d47a1;
     }
 
     /* 空状態 */
@@ -543,14 +647,89 @@
         gap: 1rem;
       }
 
-      /* テーブルは横スクロール */
-      .table-wrapper {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
+      /* モバイルではテーブルをカード化 */
+      table {
+        table-layout: auto;
       }
 
-      table {
-        min-width: 900px;
+      thead {
+        display: none;
+      }
+
+      tbody {
+        display: block;
+      }
+
+      tbody tr {
+        display: block;
+        margin-bottom: 1rem;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        overflow: hidden;
+        background-color: var(--bg-secondary);
+      }
+
+      tbody tr:hover {
+        background-color: var(--bg-secondary);
+      }
+
+      tbody tr td {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        padding: 0.8rem;
+        border-bottom: 1px solid var(--border-color);
+        border-right: none;
+      }
+
+      tbody tr td:before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: var(--text-primary);
+        padding-right: 1rem;
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      tbody tr td:last-child {
+        border-bottom: none;
+      }
+
+      /* モデル名をカードタイトルとして */
+      td.product-cell {
+        grid-template-columns: 1fr !important;
+        padding: 1rem !important;
+        font-weight: 700;
+        border-bottom: 1px solid var(--border-color) !important;
+        background-color: var(--bg-tertiary);
+      }
+
+      td.product-cell:before {
+        content: "モデル名";
+      }
+
+      td.product-cell .product-name {
+        margin-bottom: 0.3rem;
+      }
+
+      /* 購入リンクは横並び */
+      td.purchase-links-cell {
+        grid-template-columns: 100px 1fr !important;
+      }
+
+      td.purchase-links-cell:before {
+        content: "購入";
+      }
+
+      .purchase-links-cell {
+        flex-direction: row;
+        gap: 0.6rem;
+        align-items: center;
+      }
+
+      .purchase-btn {
+        display: inline;
       }
     }
 
@@ -575,9 +754,8 @@
         grid-template-columns: 1fr;
       }
 
-      .purchase-btn {
-        padding: 0.3rem 0.5rem;
-        font-size: 0.65rem;
+      tbody tr td {
+        grid-template-columns: 100px 1fr;
       }
     }
   </style>
@@ -612,100 +790,83 @@
 
             <!-- ブランド -->
             <div class="filter-group">
-              <label for="brandFilter">ブランド</label>
-              <select id="brandFilter">
-                <option value="">すべて</option>
-              </select>
+              <label>ブランド <span class="filter-badge-count" id="brandCount" style="display: none;">0</span></label>
+              <div class="multi-select-wrapper" id="brandWrapper">
+                <button class="multi-select-trigger" id="brandTrigger">すべて</button>
+                <div class="multi-select-dropdown" id="brandDropdown"></div>
+              </div>
             </div>
 
             <!-- レイアウト -->
             <div class="filter-group">
-              <label for="layoutFilter">レイアウト</label>
-              <select id="layoutFilter">
-                <option value="">すべて</option>
-                <option value="40%">40%</option>
-                <option value="60%">60%</option>
-                <option value="65%">65%</option>
-                <option value="75%">75%</option>
-                <option value="80% (TKL)">80% (TKL)</option>
-                <option value="100% (Full)">100% (Full)</option>
-                <option value="Split">Split</option>
-              </select>
+              <label>レイアウト <span class="filter-badge-count" id="layoutCount" style="display: none;">0</span></label>
+              <div class="multi-select-wrapper" id="layoutWrapper">
+                <button class="multi-select-trigger" id="layoutTrigger">すべて</button>
+                <div class="multi-select-dropdown" id="layoutDropdown"></div>
+              </div>
             </div>
 
             <!-- スイッチ技術 -->
             <div class="filter-group">
-              <label for="switchFilter">スイッチ技術</label>
-              <select id="switchFilter">
-                <option value="">すべて</option>
-                <option value="Mechanical">Mechanical</option>
-                <option value="Topre (Capacitive)">Topre (Capacitive)</option>
-                <option value="Hall Effect (Magnetic)">Hall Effect (Magnetic)</option>
-                <option value="Optical">Optical</option>
-              </select>
+              <label>スイッチ技術 <span class="filter-badge-count" id="switchCount" style="display: none;">0</span></label>
+              <div class="multi-select-wrapper" id="switchWrapper">
+                <button class="multi-select-trigger" id="switchTrigger">すべて</button>
+                <div class="multi-select-dropdown" id="switchDropdown"></div>
+              </div>
             </div>
 
             <!-- スイッチフィール -->
             <div class="filter-group">
-              <label for="feelFilter">スイッチフィール</label>
-              <select id="feelFilter">
-                <option value="">すべて</option>
-                <option value="Linear">Linear</option>
-                <option value="Tactile">Tactile</option>
-                <option value="Clicky">Clicky</option>
-              </select>
+              <label>スイッチフィール <span class="filter-badge-count" id="feelCount" style="display: none;">0</span></label>
+              <div class="multi-select-wrapper" id="feelWrapper">
+                <button class="multi-select-trigger" id="feelTrigger">すべて</button>
+                <div class="multi-select-dropdown" id="feelDropdown"></div>
+              </div>
             </div>
 
             <!-- 接続方式 -->
             <div class="filter-group">
-              <label for="connectivityFilter">接続方式</label>
-              <select id="connectivityFilter">
-                <option value="">すべて</option>
-                <option value="USB-A">USB-A</option>
-                <option value="USB-C">USB-C</option>
-                <option value="Mini USB">Mini USB</option>
-                <option value="Bluetooth">Bluetooth</option>
-                <option value="2.4GHz Dongle">2.4GHz Dongle</option>
-              </select>
+              <label>接続方式 <span class="filter-badge-count" id="connectivityCount" style="display: none;">0</span></label>
+              <div class="multi-select-wrapper" id="connectivityWrapper">
+                <button class="multi-select-trigger" id="connectivityTrigger">すべて</button>
+                <div class="multi-select-dropdown" id="connectivityDropdown"></div>
+              </div>
             </div>
 
             <!-- プロファイル -->
             <div class="filter-group">
-              <label for="profileFilter">プロファイル</label>
-              <select id="profileFilter">
-                <option value="">すべて</option>
-                <option value="Normal">Normal</option>
-                <option value="Low-Profile">Low-Profile</option>
-              </select>
+              <label>プロファイル <span class="filter-badge-count" id="profileCount" style="display: none;">0</span></label>
+              <div class="multi-select-wrapper" id="profileWrapper">
+                <button class="multi-select-trigger" id="profileTrigger">すべて</button>
+                <div class="multi-select-dropdown" id="profileDropdown"></div>
+              </div>
             </div>
 
             <!-- ホットスワップ -->
             <div class="filter-group">
-              <label for="hotswapFilter">ホットスワップ</label>
-              <select id="hotswapFilter">
-                <option value="">すべて</option>
-                <option value="true">対応</option>
-                <option value="false">非対応</option>
-              </select>
+              <label>ホットスワップ <span class="filter-badge-count" id="hotswapCount" style="display: none;">0</span></label>
+              <div class="multi-select-wrapper" id="hotswapWrapper">
+                <button class="multi-select-trigger" id="hotswapTrigger">すべて</button>
+                <div class="multi-select-dropdown" id="hotswapDropdown"></div>
+              </div>
             </div>
 
             <!-- 技適 -->
             <div class="filter-group">
-              <label for="gitekiFilter">技適</label>
-              <select id="gitekiFilter">
-                <option value="">すべて</option>
-                <option value="Certified">認証済</option>
-                <option value="Wired Only">ワイヤードのみ</option>
-                <option value="No/Unknown">未認証/不明</option>
-              </select>
+              <label>技適 <span class="filter-badge-count" id="gitekiCount" style="display: none;">0</span></label>
+              <div class="multi-select-wrapper" id="gitekiWrapper">
+                <button class="multi-select-trigger" id="gitekiTrigger">すべて</button>
+                <div class="multi-select-dropdown" id="gitekiDropdown"></div>
+              </div>
             </div>
 
             <!-- タグ -->
             <div class="filter-group">
-              <label for="tagFilter">タグ</label>
-              <select id="tagFilter">
-                <option value="">すべて</option>
-              </select>
+              <label>タグ <span class="filter-badge-count" id="tagCount" style="display: none;">0</span></label>
+              <div class="multi-select-wrapper" id="tagWrapper">
+                <button class="multi-select-trigger" id="tagTrigger">すべて</button>
+                <div class="multi-select-dropdown" id="tagDropdown"></div>
+              </div>
             </div>
           </div>
 
@@ -720,7 +881,6 @@
         <table id="keyboardTable">
           <thead>
             <tr>
-              <th>#</th>
               <th>モデル名 <button class="sort-button" data-column="name">▲▼</button></th>
               <th>レイアウト <button class="sort-button" data-column="layout">▲▼</button></th>
               <th>プロファイル <button class="sort-button" data-column="profile">▲▼</button></th>
@@ -797,15 +957,15 @@
 
     const filterState = {
       search: '',
-      brand: '',
-      layout: '',
-      switch: '',
-      feel: '',
-      connectivity: '',
-      profile: '',
-      hotswap: '',
-      giteki: '',
-      tag: ''
+      brand: [],
+      layout: [],
+      switch: [],
+      feel: [],
+      connectivity: [],
+      profile: [],
+      hotswap: [],
+      giteki: [],
+      tag: []
     };
 
     // ========== データ読み込み ==========
@@ -840,23 +1000,159 @@
     function initializeFilters() {
       // ブランド
       const brands = [...new Set(allKeyboards.map(kb => kb.brand))].sort();
-      const brandSelect = document.getElementById('brandFilter');
-      brands.forEach(brand => {
-        const option = document.createElement('option');
-        option.value = brand;
-        option.textContent = brand;
-        brandSelect.appendChild(option);
-      });
+      createMultiSelect('brand', brands);
+
+      // レイアウト
+      const layouts = ['40%', '60%', '65%', '75%', '80% (TKL)', '100% (Full)', 'Split'];
+      createMultiSelect('layout', layouts);
+
+      // スイッチ技術
+      const switches = ['Mechanical', 'Topre (Capacitive)', 'Hall Effect (Magnetic)', 'Optical'];
+      createMultiSelect('switch', switches);
+
+      // スイッチフィール
+      const feels = ['Linear', 'Tactile', 'Clicky'];
+      createMultiSelect('feel', feels);
+
+      // 接続方式
+      const connectivities = ['USB-A', 'USB-C', 'Mini USB', 'Bluetooth', '2.4GHz Dongle'];
+      createMultiSelect('connectivity', connectivities);
+
+      // プロファイル
+      const profiles = ['Normal', 'Low-Profile'];
+      createMultiSelect('profile', profiles);
+
+      // ホットスワップ
+      const hotswaps = ['対応', '非対応'];
+      const hotswapValues = ['true', 'false'];
+      createMultiSelectWithValues('hotswap', hotswaps, hotswapValues);
+
+      // 技適
+      const gitekis = ['認証済', 'ワイヤードのみ', '未認証/不明'];
+      const gitekiValues = ['Certified', 'Wired Only', 'No/Unknown'];
+      createMultiSelectWithValues('giteki', gitekis, gitekiValues);
 
       // タグ
       const allTags = [...new Set(allKeyboards.flatMap(kb => kb.tags || []))].sort();
-      const tagSelect = document.getElementById('tagFilter');
-      allTags.forEach(tag => {
-        const option = document.createElement('option');
-        option.value = tag;
-        option.textContent = tag;
-        tagSelect.appendChild(option);
+      createMultiSelect('tag', allTags);
+    }
+
+    // マルチセレクト作成関数
+    function createMultiSelect(filterId, options) {
+      const dropdown = document.getElementById(filterId + 'Dropdown');
+      dropdown.innerHTML = '';
+
+      options.forEach(option => {
+        const label = document.createElement('label');
+        label.className = 'multi-select-option';
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.value = option;
+        checkbox.addEventListener('change', () => handleFilterChange(filterId));
+
+        const labelText = document.createElement('label');
+        labelText.textContent = option;
+
+        label.appendChild(checkbox);
+        label.appendChild(labelText);
+        dropdown.appendChild(label);
       });
+    }
+
+    // マルチセレクト作成関数（値が異なる場合）
+    function createMultiSelectWithValues(filterId, labels, values) {
+      const dropdown = document.getElementById(filterId + 'Dropdown');
+      dropdown.innerHTML = '';
+
+      labels.forEach((label, index) => {
+        const value = values[index];
+        const option = document.createElement('label');
+        option.className = 'multi-select-option';
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.value = value;
+        checkbox.addEventListener('change', () => handleFilterChange(filterId));
+
+        const labelText = document.createElement('label');
+        labelText.textContent = label;
+
+        option.appendChild(checkbox);
+        option.appendChild(labelText);
+        dropdown.appendChild(option);
+      });
+    }
+
+    // マルチセレクトトリガーのイベント設定
+    function setupMultiSelectTriggers() {
+      const filterIds = ['brand', 'layout', 'switch', 'feel', 'connectivity', 'profile', 'hotswap', 'giteki', 'tag'];
+
+      filterIds.forEach(id => {
+        const trigger = document.getElementById(id + 'Trigger');
+        const dropdown = document.getElementById(id + 'Dropdown');
+
+        trigger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          // 他のドロップダウンを閉じる
+          document.querySelectorAll('.multi-select-dropdown').forEach(d => {
+            if (d !== dropdown) {
+              d.classList.remove('active');
+              d.previousElementSibling.classList.remove('active');
+            }
+          });
+
+          dropdown.classList.toggle('active');
+          trigger.classList.toggle('active');
+        });
+      });
+
+      // ドキュメントのクリックでドロップダウンを閉じる
+      document.addEventListener('click', () => {
+        document.querySelectorAll('.multi-select-dropdown.active').forEach(d => {
+          d.classList.remove('active');
+          d.previousElementSibling.classList.remove('active');
+        });
+      });
+    }
+
+    // フィルタ変更イベント
+    function handleFilterChange(filterId) {
+      const checkboxes = document.querySelectorAll(`#${filterId}Dropdown input[type="checkbox"]`);
+      const selected = Array.from(checkboxes)
+        .filter(cb => cb.checked)
+        .map(cb => cb.value);
+
+      filterState[filterId] = selected;
+      updateFilterBadge(filterId);
+      updateMultiSelectTrigger(filterId);
+      applyFilters();
+    }
+
+    // フィルタバッジ更新
+    function updateFilterBadge(filterId) {
+      const count = filterState[filterId].length;
+      const badge = document.getElementById(filterId + 'Count');
+      if (count > 0) {
+        badge.textContent = count;
+        badge.style.display = 'inline-block';
+      } else {
+        badge.style.display = 'none';
+      }
+    }
+
+    // マルチセレクトトリガーテキスト更新
+    function updateMultiSelectTrigger(filterId) {
+      const trigger = document.getElementById(filterId + 'Trigger');
+      const selected = filterState[filterId];
+
+      if (selected.length === 0) {
+        trigger.textContent = 'すべて';
+      } else if (selected.length === 1) {
+        trigger.textContent = selected[0];
+      } else {
+        trigger.textContent = `${selected[0]} 他${selected.length - 1}`;
+      }
     }
 
     // ========== フィルタイベント ==========
@@ -865,74 +1161,32 @@
       applyFilters();
     });
 
-    document.getElementById('brandFilter').addEventListener('change', (e) => {
-      filterState.brand = e.target.value;
-      applyFilters();
-    });
-
-    document.getElementById('layoutFilter').addEventListener('change', (e) => {
-      filterState.layout = e.target.value;
-      applyFilters();
-    });
-
-    document.getElementById('switchFilter').addEventListener('change', (e) => {
-      filterState.switch = e.target.value;
-      applyFilters();
-    });
-
-    document.getElementById('feelFilter').addEventListener('change', (e) => {
-      filterState.feel = e.target.value;
-      applyFilters();
-    });
-
-    document.getElementById('connectivityFilter').addEventListener('change', (e) => {
-      filterState.connectivity = e.target.value;
-      applyFilters();
-    });
-
-    document.getElementById('profileFilter').addEventListener('change', (e) => {
-      filterState.profile = e.target.value;
-      applyFilters();
-    });
-
-    document.getElementById('hotswapFilter').addEventListener('change', (e) => {
-      filterState.hotswap = e.target.value;
-      applyFilters();
-    });
-
-    document.getElementById('gitekiFilter').addEventListener('change', (e) => {
-      filterState.giteki = e.target.value;
-      applyFilters();
-    });
-
-    document.getElementById('tagFilter').addEventListener('change', (e) => {
-      filterState.tag = e.target.value;
-      applyFilters();
-    });
-
     // ========== リセットボタン ==========
     document.getElementById('resetFiltersBtn').addEventListener('click', () => {
       filterState.search = '';
-      filterState.brand = '';
-      filterState.layout = '';
-      filterState.switch = '';
-      filterState.feel = '';
-      filterState.connectivity = '';
-      filterState.profile = '';
-      filterState.hotswap = '';
-      filterState.giteki = '';
-      filterState.tag = '';
+      filterState.brand = [];
+      filterState.layout = [];
+      filterState.switch = [];
+      filterState.feel = [];
+      filterState.connectivity = [];
+      filterState.profile = [];
+      filterState.hotswap = [];
+      filterState.giteki = [];
+      filterState.tag = [];
 
       document.getElementById('searchInput').value = '';
-      document.getElementById('brandFilter').value = '';
-      document.getElementById('layoutFilter').value = '';
-      document.getElementById('switchFilter').value = '';
-      document.getElementById('feelFilter').value = '';
-      document.getElementById('connectivityFilter').value = '';
-      document.getElementById('profileFilter').value = '';
-      document.getElementById('hotswapFilter').value = '';
-      document.getElementById('gitekiFilter').value = '';
-      document.getElementById('tagFilter').value = '';
+
+      // 全チェックボックスを外す
+      document.querySelectorAll('.multi-select-dropdown input[type="checkbox"]').forEach(cb => {
+        cb.checked = false;
+      });
+
+      // トリガーとバッジをリセット
+      const filterIds = ['brand', 'layout', 'switch', 'feel', 'connectivity', 'profile', 'hotswap', 'giteki', 'tag'];
+      filterIds.forEach(id => {
+        updateMultiSelectTrigger(id);
+        updateFilterBadge(id);
+      });
 
       sortState.column = null;
       sortState.direction = null;
@@ -950,35 +1204,44 @@
           if (!matchesName && !matchesBrand) return false;
         }
 
-        // ブランド
-        if (filterState.brand && kb.brand !== filterState.brand) return false;
+        // ブランド（複数選択）
+        if (filterState.brand.length > 0 && !filterState.brand.includes(kb.brand)) return false;
 
-        // レイアウト
-        if (filterState.layout && kb.specs.layout_size !== filterState.layout) return false;
+        // レイアウト（複数選択）
+        if (filterState.layout.length > 0 && !filterState.layout.includes(kb.specs.layout_size)) return false;
 
-        // スイッチ技術
-        if (filterState.switch && kb.specs.switch_technology !== filterState.switch) return false;
+        // スイッチ技術（複数選択）
+        if (filterState.switch.length > 0 && !filterState.switch.includes(kb.specs.switch_technology)) return false;
 
-        // スイッチフィール
-        if (filterState.feel && !kb.specs.switch_feels_available.includes(filterState.feel)) return false;
-
-        // 接続方式
-        if (filterState.connectivity && !kb.specs.connectivity.includes(filterState.connectivity)) return false;
-
-        // プロファイル
-        if (filterState.profile && kb.specs.profile !== filterState.profile) return false;
-
-        // ホットスワップ
-        if (filterState.hotswap !== '') {
-          const hotswapValue = filterState.hotswap === 'true';
-          if (kb.specs.switch_hotswap !== hotswapValue) return false;
+        // スイッチフィール（複数選択、OR条件）
+        if (filterState.feel.length > 0) {
+          const hasMatchingFeel = filterState.feel.some(feel => kb.specs.switch_feels_available.includes(feel));
+          if (!hasMatchingFeel) return false;
         }
 
-        // 技適
-        if (filterState.giteki && kb.japan_context.giteki !== filterState.giteki) return false;
+        // 接続方式（複数選択、OR条件）
+        if (filterState.connectivity.length > 0) {
+          const hasMatchingConn = filterState.connectivity.some(conn => kb.specs.connectivity.includes(conn));
+          if (!hasMatchingConn) return false;
+        }
 
-        // タグ
-        if (filterState.tag && !kb.tags.includes(filterState.tag)) return false;
+        // プロファイル（複数選択）
+        if (filterState.profile.length > 0 && !filterState.profile.includes(kb.specs.profile)) return false;
+
+        // ホットスワップ（複数選択）
+        if (filterState.hotswap.length > 0) {
+          const isHotswap = kb.specs.switch_hotswap ? 'true' : 'false';
+          if (!filterState.hotswap.includes(isHotswap)) return false;
+        }
+
+        // 技適（複数選択）
+        if (filterState.giteki.length > 0 && !filterState.giteki.includes(kb.japan_context.giteki)) return false;
+
+        // タグ（複数選択、OR条件）
+        if (filterState.tag.length > 0) {
+          const hasMatchingTag = filterState.tag.some(tag => kb.tags.includes(tag));
+          if (!hasMatchingTag) return false;
+        }
 
         return true;
       });
@@ -1063,12 +1326,12 @@
       const layoutBadge = `<span class="badge badge-layout badge-layout-${layoutClass}">${kb.specs.layout_size}</span>`;
 
       // スイッチフィール
-      const feelsHtml = kb.specs.switch_feels_available.map(feel => {
+      const feelsHtml = `<div class="switch-feels-container">${kb.specs.switch_feels_available.map(feel => {
         const feelClass = feel === 'Linear' ? 'badge-feel-linear' :
                          feel === 'Tactile' ? 'badge-feel-tactile' :
                          'badge-feel-clicky';
         return `<span class="badge badge-feel ${feelClass}">${feel}</span>`;
-      }).join('');
+      }).join('')}</div>`;
 
       // ホットスワップ
       const hotswapHtml = kb.specs.switch_hotswap
@@ -1113,21 +1376,20 @@
 
       return `
         <tr>
-          <td class="row-number">${rowNumber}</td>
-          <td class="product-cell">
+          <td class="product-cell" data-label="モデル名">
             <div class="product-name">${kb.name}</div>
             <div class="product-id">${kb.id}</div>
           </td>
-          <td>${layoutBadge}</td>
-          <td>${kb.specs.profile}</td>
-          <td>${kb.specs.switch_technology}</td>
-          <td>${feelsHtml}</td>
-          <td>${hotswapHtml}</td>
-          <td>${backlightText}</td>
-          <td>${connectivityHtml}</td>
-          <td><span class="cert-icon">${gitekiInfo}</span></td>
-          <td><span class="badge badge-availability ${availabilityClass}">${availabilityLabel}</span></td>
-          <td class="purchase-links-cell">${purchaseLinksHtml}</td>
+          <td data-label="レイアウト">${layoutBadge}</td>
+          <td data-label="プロファイル">${kb.specs.profile}</td>
+          <td data-label="スイッチ技術">${kb.specs.switch_technology}</td>
+          <td data-label="スイッチフィール">${feelsHtml}</td>
+          <td data-label="ホットスワップ">${hotswapHtml}</td>
+          <td data-label="バックライト">${backlightText}</td>
+          <td data-label="接続">${connectivityHtml}</td>
+          <td data-label="技適"><span class="cert-icon">${gitekiInfo}</span></td>
+          <td data-label="入手性"><span class="badge badge-availability ${availabilityClass}">${availabilityLabel}</span></td>
+          <td class="purchase-links-cell" data-label="購入">${purchaseLinksHtml}</td>
         </tr>
       `;
     }
@@ -1146,6 +1408,7 @@
       initTheme();
       await loadKeyboards();
       initializeFilters();
+      setupMultiSelectTriggers();
       applyFilters();
     }
 

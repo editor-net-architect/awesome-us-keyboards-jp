@@ -1,0 +1,85 @@
+[
+  {
+    "category": "Japanese Manufacturers",
+    "brands": [
+      { "en": "HHKB",         "ja": "HHKB（PFU）" },
+      { "en": "Realforce",    "ja": "REALFORCE（東プレ）" },
+      { "en": "FILCO",        "ja": "FILCO（ダイヤテック）" },
+      { "en": "Elecom",       "ja": "エレコム" },
+      { "en": "Buffalo",      "ja": "バッファロー" },
+      { "en": "Sanwa Supply", "ja": "サンワサプライ" },
+      { "en": "I-O Data",     "ja": "アイ・オー・データ" }
+    ]
+  },
+  {
+    "category": "Gaming & Mainstream",
+    "brands": [
+      { "en": "Logicool" },
+      { "en": "Razer" },
+      { "en": "Corsair" },
+      { "en": "SteelSeries" },
+      { "en": "HyperX" },
+      { "en": "Roccat" },
+      { "en": "Cooler Master" },
+      { "en": "Thermaltake" },
+      { "en": "ASUS ROG" },
+      { "en": "Gigabyte" },
+      { "en": "MSI" },
+      { "en": "NZXT" },
+      { "en": "Xtrfy" },
+      { "en": "Endgame Gear" },
+      { "en": "Glorious" },
+      { "en": "Mionix" },
+      { "en": "Zowie" },
+      { "en": "Redragon" }
+    ]
+  },
+  {
+    "category": "Mechanical & Enthusiast",
+    "brands": [
+      { "en": "Keychron" },
+      { "en": "Ducky" },
+      { "en": "Leopold" },
+      { "en": "Varmilo" },
+      { "en": "Durgod" },
+      { "en": "iKBC" },
+      { "en": "Mistel" },
+      { "en": "Royal Kludge" },
+      { "en": "Akko" },
+      { "en": "Epomaker" },
+      { "en": "NuPhy" },
+      { "en": "Anne Pro" },
+      { "en": "Wooting" },
+      { "en": "Tex Keyboard" },
+      { "en": "NIZ" },
+      { "en": "KBDfans" },
+      { "en": "Drop" },
+      { "en": "Input Club" },
+      { "en": "Perixx" },
+      { "en": "Das Keyboard" },
+      { "en": "Matias" },
+      { "en": "Mode Designs" },
+      { "en": "GMMK" }
+    ]
+  },
+  {
+    "category": "Major PC & Peripheral Brands",
+    "brands": [
+      { "en": "Apple" },
+      { "en": "Microsoft" },
+      { "en": "Dell" },
+      { "en": "HP" },
+      { "en": "Lenovo" }
+    ]
+  },
+  {
+    "category": "Budget & General Purpose",
+    "brands": [
+      { "en": "Anker" },
+      { "en": "Aukey" },
+      { "en": "Havit" },
+      { "en": "Velocifire" },
+      { "en": "E-Element" }
+    ]
+  }
+]

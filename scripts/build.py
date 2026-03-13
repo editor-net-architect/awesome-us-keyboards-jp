@@ -2,7 +2,7 @@
 """
 build.py
 
-data/*.json（brands.json を除く）を brands.json のブランド順で結合し、
+data/*.json（_brands.json を除く）を _brands.json のブランド順で結合し、
 スキーマ検証のうえ site/keyboards.json を生成する。
 
 使い方:
@@ -19,7 +19,7 @@ import sys
 
 ROOT        = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR    = os.path.join(ROOT, "data")
-BRANDS_FILE = os.path.join(DATA_DIR, "brands.json")
+BRANDS_FILE = os.path.join(DATA_DIR, "_brands.json")
 SCHEMA_FILE = os.path.join(ROOT, "schema", "us-keyboard-inventory-schema.json")
 OUTPUT_FILE = os.path.join(ROOT, "site", "keyboards.json")
 
@@ -45,7 +45,7 @@ print(f"📋  brands.json: {len(brand_order_map)} ブランド / {len(brands_dat
 # ── 2. data/*.json を結合（brands.json は除外） ─────────────────
 json_files = sorted(
     f for f in os.listdir(DATA_DIR)
-    if f.endswith(".json") and f != "brands.json"
+    if f.endswith(".json") and not f.startswith("_")
 )
 
 if not json_files:

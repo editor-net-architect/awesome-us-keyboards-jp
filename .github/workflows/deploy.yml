@@ -23,40 +23,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Aggregate keyboard data
-        run: |
-          python3 << 'EOF'
-          import json
-          import os
-          from pathlib import Path
+      - name: Install dependencies
+        run: pip install jsonschema
 
-          # data/ ディレクトリ内のすべてのJSONファイルを読み込む
-          data_dir = Path('data')
-          all_keyboards = []
-
-          if data_dir.exists():
-            for json_file in sorted(data_dir.glob('*.json')):
-              try:
-                with open(json_file, 'r', encoding='utf-8') as f:
-                  keyboards = json.load(f)
-                  # 配列を結合
-                  if isinstance(keyboards, list):
-                    all_keyboards.extend(keyboards)
-                  else:
-                    print(f"Warning: {json_file} is not an array, skipping")
-              except Exception as e:
-                print(f"Error reading {json_file}: {e}")
-                exit(1)
-
-          # site/keyboards.json に書き込む
-          output_path = Path('site/keyboards.json')
-          output_path.parent.mkdir(parents=True, exist_ok=True)
-
-          with open(output_path, 'w', encoding='utf-8') as f:
-            json.dump(all_keyboards, f, ensure_ascii=False, indent=2)
-
-          print(f"✓ Generated site/keyboards.json with {len(all_keyboards)} keyboards")
-          EOF
+      - name: Build keyboard data
+        run: python scripts/build.py
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

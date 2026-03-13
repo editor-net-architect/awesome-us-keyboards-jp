@@ -31,7 +31,7 @@
     "name": "K8 Pro QMK/VIA Wireless Mechanical Keyboard (US ANSI)",
     "brand": "Keychron",
     "specs": {
-      "layout_size": "TKL (80%)",
+      "layout_size": "80% (TKL)",
       "profile": "Normal",
       "switch_technology": "Mechanical",
       "switch_feels_available": ["Linear", "Tactile", "Clicky"],

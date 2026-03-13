@@ -10,7 +10,7 @@
       "switch_feels_available": ["Linear"],
       "switch_hotswap": true,
       "backlight": "RGB",
-      "connectivity": ["USB-C", "Bluetooth", "2.4GHz Wireless"],
+      "connectivity": ["USB-C", "Bluetooth"],
       "os_compatibility": ["Windows", "macOS", "Linux"],
       "customization_method": "QMK/VIA",
       "weight_g": null,

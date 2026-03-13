@@ -1,0 +1,12 @@
+{
+  "name": "awesome-us-keyboards-jp",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build.js",
+    "validate": "node scripts/build.js"
+  },
+  "devDependencies": {
+    "ajv": "^8.17.1"
+  }
+}

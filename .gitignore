@@ -41,5 +41,6 @@ Thumbs.db
 
 # Project specific
 site/keyboards.json
+site/all-keyboards.json
 .env
 .env.local

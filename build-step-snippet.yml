@@ -1,0 +1,11 @@
+# ─────────────────────────────────────────────────────────────
+# deploy.yml の既存インラインスクリプトを以下に置き換えてください
+# ─────────────────────────────────────────────────────────────
+
+      # スキーマ検証ライブラリのインストール
+      - name: Install dependencies
+        run: pip install jsonschema
+
+      # JSON結合 + ブランド順ソート + スキーマ検証 → site/keyboards.json を生成
+      - name: Build keyboard data
+        run: python scripts/build.py
